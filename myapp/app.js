@@ -5,9 +5,9 @@ var app = express();
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-    console.log("Received a request for /");
+    console.log("Received a request for /helloWorld");
 
-    res.write("This is the root");
+    res.write("This is the Hello World page");
     res.end();
 });
 
