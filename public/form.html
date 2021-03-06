@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09 Prove: Postal Rate Calculator</title>
+</head>
+<body>
+    <h1>Math Submission Form</h1>
+    <form action="/rate" method="get">
+        <select name="operation" id="operation">
+            <option value="letter-stamped">Letters (Stamped)</option>
+            <option value="letter-metered">Letters (Metered)</option>
+            <option value="large-evelope-flat">Large Envelopes (Flats)</option>
+            <option value="first-class-retail">Parcels</option>
+        </select>
+
+        <input type="text" name="weightoz" id="weightoz"> Please enter weight
+
+        <br>
+
+        <input type="submit" value="Get Rate">
+    </form>
+</body>
+</html>
