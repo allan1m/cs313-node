@@ -1,6 +1,26 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 5000
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+
+//database connection
+const { Pool } = require('pg')
+const connectionString = process.env.DATABASE_URL || 'postgres://mcfqmzzpliiroo:6f84571ea24fc26f77068a90a2dd0cdac4b9bfc25f313b943f7980b8a0fed605@ec2-54-162-119-125.compute-1.amazonaws.com:5432/d3u5jrc2mss315?ssl=true'
+const pool = new Pool({connectionString: connectionString})
+const sql = "SELECT * FROM person;"
+pool.query(sql, function(err, res) {
+    // If an error occurred...
+    if (err) {
+        console.log("Error in query: ")
+        console.log(err)
+    }
+
+    // Log this to the console for debugging purposes.
+    console.log("Back from DB with result:")
+    console.log(res.rows)
+
+
+});
 
 app.use(express.static(__dirname + "/public"))
 app.set('views', __dirname + '/views')
@@ -9,6 +29,7 @@ app.set('view engine', 'ejs')
 //set up a raule that says requests to "/rate" should be handled by the
 //handleRate function below
 app.get('/rate', handleRate)
+app.get('/getPerson', handleGetPerson)
 
 //start the server listening
 app.listen(port, () => {
@@ -72,4 +93,33 @@ function computeRate(response, op, oz) {
     var params = { operation: op, weight: oz, result: result }
     
     response.render('pages/result', params)
+}
+
+function handleGetPerson(request, response) {
+    console.log('inside handGetPerson')
+    var op = request.query.id
+    console.log(op)
+    var op = 1
+    
+    if (op == 1) {
+        console.log('inside if statement')
+        const sql = "SELECT first_name, last_name, dob FROM person;"
+        pool.query(sql, function(err, res) {
+        // If an error occurred...
+        if (err) {
+            console.log("Error in query: ")
+            console.log(err)
+        }
+
+        // Log this to the console for debugging purposes.
+        console.log("Back from database with the following:")
+            console.log(res.rows)
+            
+            var stringres = JSON.stringify(res.rows)
+            
+            var params = { op: op, res: stringres }
+            
+            response.send(res.rows)
+});
+    }
 }
