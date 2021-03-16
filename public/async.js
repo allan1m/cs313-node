@@ -1,4 +1,13 @@
 function loadDB() {
+
+    var element = document.getElementById('personId');
+    var value = element.value;
+    var name = element.getAttribute("name");
+    console.log(value);
+    console.log(name);
+    var sending = name + "=" + value;
+    console.log(sending);
+
     var http = new XMLHttpRequest();
 
     http.onreadystatechange = function () {
@@ -7,6 +16,6 @@ function loadDB() {
         }
     }
 
-    http.open('GET', './getPerson', true)
-    http.send()
+    http.open('GET', '/getPerson?'+sending, true);
+    http.send();
 }

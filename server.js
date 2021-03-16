@@ -97,9 +97,8 @@ function computeRate(response, op, oz) {
 
 function handleGetPerson(request, response) {
     console.log('inside handGetPerson')
-    var op = request.query.id
+    var op = request.query.personId
     console.log(op)
-    var op = 1
     
     if (op == 1) {
         console.log('inside if statement')
