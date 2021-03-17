@@ -6,7 +6,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 //database connection
 const { Pool } = require('pg')
 const connectionString = process.env.DATABASE_URL || 'postgres://mcfqmzzpliiroo:6f84571ea24fc26f77068a90a2dd0cdac4b9bfc25f313b943f7980b8a0fed605@ec2-54-162-119-125.compute-1.amazonaws.com:5432/d3u5jrc2mss315?ssl=true'
-const pool = new Pool({connectionString: connectionString})
+const pool = new Pool({connectionString: connectionString, ssl: {rejectUnauthorized: false}})
 const sql = "SELECT * FROM person;"
 pool.query(sql, function(err, res) {
     // If an error occurred...
@@ -17,7 +17,7 @@ pool.query(sql, function(err, res) {
 
     // Log this to the console for debugging purposes.
     console.log("Back from DB with result:")
-    console.log(res.rows)
+    //console.log(res.rows)
 
 
 });
