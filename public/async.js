@@ -1,6 +1,6 @@
 function loadDB() {
 
-    var element = document.getElementById('personId');
+    var element = document.getElementById('itemId');
     var value = element.value;
     var name = element.getAttribute("name");
     console.log(value);

@@ -17,7 +17,7 @@ pool.query(sql, function(err, res) {
 
     // Log this to the console for debugging purposes.
     console.log("Back from DB with result:")
-    console.log(res.rows)
+    //console.log(res.rows)
 
 
 });
@@ -97,12 +97,12 @@ function computeRate(response, op, oz) {
 
 function handleGetPerson(request, response) {
     console.log('inside handGetPerson')
-    var op = request.query.personId
+    var op = request.query.itemId
     console.log(op)
     
     if (op == 1) {
         console.log('inside if statement')
-        const sql = "SELECT first_name, last_name, dob FROM person;"
+        const sql = "SELECT item FROM menu;"
         pool.query(sql, function(err, res) {
         // If an error occurred...
         if (err) {
