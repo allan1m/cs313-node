@@ -97,13 +97,13 @@ function computeRate(response, op, oz) {
 }
 
 function handleGetPerson(request, response) {
-    console.log('inside handleGetPerson')
-    var op = request.query.itemId
-    console.log("The value of op:" + op)
+    //console.log('inside handleGetPerson')
+    //var op = request.query.itemId
+    //console.log("The value of op:" + op)
     
-    if (op == 1) {
-        console.log('Inside if statement, op = ' + op)
-        const sql = "SELECT item FROM menu;"
+    //if (op == 1) {
+        //console.log('Inside if statement, op = ' + op)
+        const sql = "SELECT ingredients FROM menu WHERE id=1;"
         pool.query(sql, function(err, res) {
         // If an error occurred...
         if (err) {
@@ -114,14 +114,14 @@ function handleGetPerson(request, response) {
         // Log this to the console for debugging purposes.
         console.log("Back from database with the following:" + res.rows)
             
-        var JSONdata = JSON.stringify(res.rows)
+        var ingredients = res.rows
             
-        var params = { response: JSONdata }
+        var params = { item: ingredients }
 
-        console.log("JSON DATA " + JSONdata)
+        console.log("JSON DATA " + ingredients)
             
         response.send( params)
             
         });
-    }
+    //}
 }

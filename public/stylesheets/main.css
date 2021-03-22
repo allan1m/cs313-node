@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Overlock+SC&display=swap');
+
 html, body{
   margin:0;
   height: 100%;
@@ -15,6 +17,8 @@ html, body{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  filter: opacity(85%) blur(3px);
 }
 
 .nav{
@@ -32,12 +36,72 @@ html, body{
 }
 
 .nav a{
-  font-size: 30px;
+  font-size: 40px;
   color: #ffffff;
   margin: 20px;
   text-decoration: none;
+  font-family: 'Overlock SC', cursive;
 }
 
 .nav a:hover{
   text-decoration: underline;
+}
+
+.menu-items{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 80%;
+  left:20%;
+}
+
+#carne-asada img{
+  width: 15%;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #D39657;
+  margin-bottom: 0;
+}
+
+#al-pastor img{
+  width: 15%;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #D39657;
+  margin-bottom: 0;
+}
+
+#carnitas img{
+  width: 15%;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #D39657;
+  margin-bottom: 0;
+}
+
+#pollo img{
+  width: 15%;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #D39657;
+  margin-bottom: 0;
+}
+
+#pescado img{
+  width: 15%;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #D39657;
+  margin-bottom: 0;
+}
+#carne-asada #returnCarneAsada{
+  width: 15%;
+  font-size: 25px;
+  border-radius: 10px;
+  background-color: #E6BB87;
+  border-style: solid;
+  border-color: #D39657;
+  color: #000000;
+  font-family: 'Caveat', cursive;
 }
