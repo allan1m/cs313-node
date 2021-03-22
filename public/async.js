@@ -16,6 +16,8 @@ function loadDB() {
         }
     }
 
-    http.open('GET', '/getPerson?'+sending, true);
+    http.open('POST', '/getPerson?'+sending, true);
     http.send();
+
 }
+

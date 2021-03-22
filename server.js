@@ -23,13 +23,14 @@ pool.query(sql, function(err, res) {
 });
 
 app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/public/stylesheets"))
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 
 //set up a raule that says requests to "/rate" should be handled by the
 //handleRate function below
 app.get('/rate', handleRate)
-app.get('/getPerson', handleGetPerson)
+app.post('/getPerson', handleGetPerson)
 
 //start the server listening
 app.listen(port, () => {
@@ -96,7 +97,7 @@ function computeRate(response, op, oz) {
 }
 
 function handleGetPerson(request, response) {
-    console.log('inside handGetPerson')
+    console.log('inside handleGetPerson')
     var op = request.query.itemId
     console.log(op)
     
@@ -114,11 +115,13 @@ function handleGetPerson(request, response) {
         console.log("Back from database with the following:")
             console.log(res.rows)
             
-            var stringres = JSON.stringify(res.rows)
+            var JSONdata = JSON.stringify(res.rows)
             
-            var params = { op: op, res: stringres }
+            var params = { op: op, res: JSONdata }
+
+            console.log("JSON DATA " + JSONdata)
             
-            response.send(res.rows)
+            response.send(params)
 });
     }
 }
