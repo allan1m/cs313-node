@@ -28,8 +28,9 @@ html, body{
   top: 0;
   overflow: hidden;
   position: fixed;  
-  border-style: solid;
+  border-style: double;
   border-color: #ffffff;
+  border-width: 8px;
   margin-top: 50px;
   left: 40%;
   
@@ -47,57 +48,30 @@ html, body{
   text-decoration: underline;
 }
 
-.menu-items{
+#menu-item{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
-  bottom: 80%;
-  left:20%;
+  bottom: 75%;
+  left: 2%;
 }
 
-#carne-asada img{
-  width: 15%;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: #D39657;
-  margin-bottom: 0;
+.item-logo{
+  flex: 1;
 }
 
-#al-pastor img{
-  width: 15%;
-  border-style: solid;
-  border-radius: 10px;
+.item-logo img {
+  width: 250px;
+  height: 250px;
+  border-style: double;
+  border-width: 25px;
+  border-radius: 5%;
   border-color: #D39657;
-  margin-bottom: 0;
 }
 
-#carnitas img{
-  width: 15%;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: #D39657;
-  margin-bottom: 0;
-}
-
-#pollo img{
-  width: 15%;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: #D39657;
-  margin-bottom: 0;
-}
-
-#pescado img{
-  width: 15%;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: #D39657;
-  margin-bottom: 0;
-}
-#carne-asada #returnCarneAsada{
-  width: 15%;
-  font-size: 25px;
+.item-logo #returnCarneAsada, #returnAlPastor, #returnCarnitas, #returnPollo, #returnPescado{
+  width: 75%;
+  font-size: 30px;
   border-radius: 10px;
   background-color: #E6BB87;
   border-style: solid;

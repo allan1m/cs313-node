@@ -30,7 +30,11 @@ app.set('view engine', 'ejs')
 //set up a raule that says requests to "/rate" should be handled by the
 //handleRate function below
 app.get('/rate', handleRate)
-app.post('/getPerson', handleGetPerson)
+app.post('/getCarneAsada', handleCarneAsada)
+app.post('/getAlPastor', handleAlPastor)
+app.post('/getCarnitas', handleCarnitas)
+app.post('/getPollo', handlePollo)
+app.post('/getPescado', handlePescado)
 
 //start the server listening
 app.listen(port, () => {
@@ -96,7 +100,7 @@ function computeRate(response, op, oz) {
     response.render('pages/result', params)
 }
 
-function handleGetPerson(request, response) {
+function handleCarneAsada(request, response) {
     //console.log('inside handleGetPerson')
     //var op = request.query.itemId
     //console.log("The value of op:" + op)
@@ -104,6 +108,126 @@ function handleGetPerson(request, response) {
     //if (op == 1) {
         //console.log('Inside if statement, op = ' + op)
         const sql = "SELECT ingredients FROM menu WHERE id=1;"
+        pool.query(sql, function(err, res) {
+        // If an error occurred...
+        if (err) {
+            console.log("Error in query: ")
+            console.log(err)
+        }
+
+        // Log this to the console for debugging purposes.
+        console.log("Back from database with the following:" + res.rows)
+            
+        var ingredients = res.rows
+            
+        var params = { item: ingredients }
+
+        console.log("JSON DATA " + ingredients)
+            
+        response.send( params)
+            
+        });
+    //}
+}
+
+function handleAlPastor(request, response) {
+    //console.log('inside handleGetPerson')
+    //var op = request.query.itemId
+    //console.log("The value of op:" + op)
+    
+    //if (op == 1) {
+        //console.log('Inside if statement, op = ' + op)
+        const sql = "SELECT ingredients FROM menu WHERE id=2;"
+        pool.query(sql, function(err, res) {
+        // If an error occurred...
+        if (err) {
+            console.log("Error in query: ")
+            console.log(err)
+        }
+
+        // Log this to the console for debugging purposes.
+        console.log("Back from database with the following:" + res.rows)
+            
+        var ingredients = res.rows
+            
+        var params = { item: ingredients }
+
+        console.log("JSON DATA " + ingredients)
+            
+        response.send( params)
+            
+        });
+    //}
+}
+
+function handleCarnitas(request, response) {
+    //console.log('inside handleGetPerson')
+    //var op = request.query.itemId
+    //console.log("The value of op:" + op)
+    
+    //if (op == 1) {
+        //console.log('Inside if statement, op = ' + op)
+        const sql = "SELECT ingredients FROM menu WHERE id=5;"
+        pool.query(sql, function(err, res) {
+        // If an error occurred...
+        if (err) {
+            console.log("Error in query: ")
+            console.log(err)
+        }
+
+        // Log this to the console for debugging purposes.
+        console.log("Back from database with the following:" + res.rows)
+            
+        var ingredients = res.rows
+            
+        var params = { item: ingredients }
+
+        console.log("JSON DATA " + ingredients)
+            
+        response.send( params)
+            
+        });
+    //}
+}
+
+function handlePollo(request, response) {
+    //console.log('inside handleGetPerson')
+    //var op = request.query.itemId
+    //console.log("The value of op:" + op)
+    
+    //if (op == 1) {
+        //console.log('Inside if statement, op = ' + op)
+        const sql = "SELECT ingredients FROM menu WHERE id=3;"
+        pool.query(sql, function(err, res) {
+        // If an error occurred...
+        if (err) {
+            console.log("Error in query: ")
+            console.log(err)
+        }
+
+        // Log this to the console for debugging purposes.
+        console.log("Back from database with the following:" + res.rows)
+            
+        var ingredients = res.rows
+            
+        var params = { item: ingredients }
+
+        console.log("JSON DATA " + ingredients)
+            
+        response.send( params)
+            
+        });
+    //}
+}
+
+function handlePescado(request, response) {
+    //console.log('inside handleGetPerson')
+    //var op = request.query.itemId
+    //console.log("The value of op:" + op)
+    
+    //if (op == 1) {
+        //console.log('Inside if statement, op = ' + op)
+        const sql = "SELECT ingredients FROM menu WHERE id=4;"
         pool.query(sql, function(err, res) {
         // If an error occurred...
         if (err) {
