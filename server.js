@@ -3,6 +3,25 @@ const app = express()
 const port = process.env.PORT || 5000
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
+//Team Activity
+// We are going to use sessions
+var session = require('express-session')
+
+// set up sessions
+app.use(session({
+  secret: 'my-super-secret-secret!',
+  resave: false,
+  saveUninitialized: true
+}))
+
+// Because we will be using post values, we need to use the body parser middleware
+app.use(express.json() );       // to support JSON-encoded bodies
+app.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
+// This shows how to use a middleware function for all requests (it is defined below)
+// Becuse it comes after the static function call, we won't see it log requests
+// for the static pages, only the ones that continue on passed that (e.g., /logout)
+app.use(logRequest);
+
 //database connection
 const { Pool } = require('pg')
 const connectionString = process.env.DATABASE_URL || 'postgres://mcfqmzzpliiroo:6f84571ea24fc26f77068a90a2dd0cdac4b9bfc25f313b943f7980b8a0fed605@ec2-54-162-119-125.compute-1.amazonaws.com:5432/d3u5jrc2mss315?ssl=true'
@@ -35,6 +54,10 @@ app.post('/getAlPastor', handleAlPastor)
 app.post('/getCarnitas', handleCarnitas)
 app.post('/getPollo', handlePollo)
 app.post('/getPescado', handlePescado)
+
+//team activity
+app.post('/login', handleLogin);
+app.post('/logout', handleLogout);
 
 //start the server listening
 app.listen(port, () => {
@@ -248,4 +271,39 @@ function handlePescado(request, response) {
             
         });
     //}
+}
+
+// Checks if the username and password match a hardcoded set
+// If they do, put the username on the session
+function handleLogin(request, response) {
+	var result = {success: false};
+
+	// We should do better error checking here to make sure the parameters are present
+	if (request.body.username == "admin" && request.body.password == "password") {
+		request.session.user = request.body.username;
+		result = {success: true};
+	}
+
+	response.json(result);
+}
+
+// If a user is currently stored on the session, removes it
+function handleLogout(request, response) {
+	var result = {success: false};
+
+	// We should do better error checking here to make sure the parameters are present
+	if (request.session.user) {
+		request.session.destroy();
+		result = {success: true};
+	}
+
+	response.json(result);
+}
+
+// This middleware function simply logs the current request to the server
+function logRequest(request, response, next) {
+	console.log("Received a request for: " + request.url);
+
+	// don't forget to call next() to allow the next parts of the pipeline to function
+	next();
 }
