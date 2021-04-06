@@ -33,7 +33,7 @@ body{
   
 }
 
-.nav a{
+.nav h1{
   font-size: 40px;
   color: #ffffff;
   margin: 20px;
@@ -45,31 +45,13 @@ body{
   text-decoration: underline;
 }
 
-#story{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 25%;
-  left: 35%;
-  width: 30%;
-  border-style: double;
-  border-width: 25px;
-  border-radius: 5%;
-  border-color: #D39657;
-}
-
-#story p{
-  font-size: 35px;
-  font-family: 'Overclock SC', cursive;
-}
-
 #menu-item{
   display: flex;
   justify-content: space-between;
   text-decoration: none;
   position: fixed;
-  top: 60%;
+  top: 40%;
+  left: 5%;
 }
 
 .item-logo{
